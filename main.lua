@@ -43,7 +43,7 @@ textBox.Size = UDim2.new(0, 430, 0, 180)
 textBox.Position = UDim2.new(0, 10, 0, 40)
 textBox.BackgroundColor3 = Color3.fromRGB(35, 23, 11)
 textBox.TextColor3 = Color3.fromRGB(200, 255, 200)
-textBox.Text = "-- Cole ou digite seu script aqui..."
+textBox.Text = "-- Cole ou digite seu script cuzudo aqui..."
 textBox.ClearTextOnFocus = false
 textBox.MultiLine = true
 textBox.TextSize = 14
@@ -174,7 +174,7 @@ local function adicionarScriptPreSalvo(nome, codigo)
 end
 
 -- INJEÇÃO DE FÁBRICA: Carrega o Dex Explorer automaticamente na lista
-adicionarScriptPreSalvo("Dex Explorer", 'loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Dex-Explorer-plus-50432"))()')
+adicionarScriptPreSalvo("Dex Explorer plus", 'loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Dex-Explorer-plus-50432"))()')
 
 -- Ação do botão principal EXECUTE
 executeBtn.MouseButton1Click:Connect(function()
