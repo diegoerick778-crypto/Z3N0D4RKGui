@@ -177,7 +177,7 @@ local function adicionarScriptPreSalvo(nome, codigo)
 end
 
 -- INJEÇÃO DE FÁBRICA: Carrega o Dex Explorer automaticamente na lista
-adicionarScriptPreSalvo("Dex Explorer plus", 'loadstring(game:HttpGet("https://rawscripts.net"))()')
+adicionarScriptPreSalvo("Dex Explorer plus", 'loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Dex-Explorer-plus-50432"))()')
 
 -- Ação do botão principal EXECUTE
 executeBtn.MouseButton1Click:Connect(function()
