@@ -10,7 +10,7 @@ end
 
 -- Tela Principal
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "TungTungExecutorGui"
+screenGui.Name = "Z3N0D4RKGui"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = playerGui
 
@@ -30,7 +30,7 @@ mainFrame.Parent = screenGui
 local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(1, 0, 0, 30)
 titleLabel.BackgroundColor3 = Color3.fromRGB(48, 32, 15)
-titleLabel.Text = "  [TUNG_TUNG_SAHUR_EXECUTOR_v1.2] owner tiktok:anonymous.zz76"
+titleLabel.Text = "  [Z3N0_D4RK_v2.0] owner: anonymous.zz76"
 titleLabel.TextColor3 = Color3.fromRGB(244, 226, 198)
 titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 titleLabel.Font = Enum.Font.RobotoMono
