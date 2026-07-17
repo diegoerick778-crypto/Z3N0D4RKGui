@@ -1,9 +1,12 @@
--- Versão Consolidada para GitHub (Tung Tung Sahur Executor v1.2)
+-- Versão Consolidada para GitHub (Tung Tung Sahur Executor v1.2) - Black Edition
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local playerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 -- Remove versões antigas da tela para não duplicar
+if playerGui:FindFirstChild("Z3N0D4RKGui") then
+	playerGui.Z3N0D4RKGui:Destroy()
+end
 if playerGui:FindFirstChild("TungTungExecutorGui") then
 	playerGui.TungTungExecutorGui:Destroy()
 end
@@ -14,14 +17,14 @@ screenGui.Name = "Z3N0D4RKGui"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = playerGui
 
--- Janela Principal do Executor (Design Marrom)
+-- Janela Principal do Executor (Design Preto)
 local mainFrame = Instance.new("Frame")
 mainFrame.Name = "MainFrame"
 mainFrame.Size = UDim2.new(0, 450, 0, 280)
 mainFrame.Position = UDim2.new(0.5, -310, 0.5, -140)
-mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+mainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Preto Puro
 mainFrame.BorderSizePixel = 2
-mainFrame.BorderColor3 = Color3.fromRGB(0, 255, 120)
+mainFrame.BorderColor3 = Color3.fromRGB(0, 255, 120) -- Borda Verde Neon
 mainFrame.Active = true
 mainFrame.Draggable = true 
 mainFrame.Parent = screenGui
@@ -29,7 +32,7 @@ mainFrame.Parent = screenGui
 -- Título Principal
 local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(1, 0, 0, 30)
-titleLabel.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+titleLabel.BackgroundColor3 = Color3.fromRGB(10, 10, 10) -- Preto mais escuro
 titleLabel.Text = "  [Z3N0_D4RK_v2.0] owner: anonymous.zz76"
 titleLabel.TextColor3 = Color3.fromRGB(0, 255, 120)
 titleLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -41,9 +44,9 @@ titleLabel.Parent = mainFrame
 local textBox = Instance.new("TextBox")
 textBox.Size = UDim2.new(0, 430, 0, 180)
 textBox.Position = UDim2.new(0, 10, 0, 40)
-textBox.BackgroundColor3 = Color3.fromRGB(35, 23, 11)
+textBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Cinza Escuro
 textBox.TextColor3 = Color3.fromRGB(200, 255, 200)
-textBox.Text = "-- Cole ou digite seu script cuzudo aqui..."
+textBox.Text = "-- Cole ou digite seu script aqui..."
 textBox.ClearTextOnFocus = false
 textBox.MultiLine = true
 textBox.TextSize = 14
@@ -56,9 +59,9 @@ textBox.Parent = mainFrame
 local executeBtn = Instance.new("TextButton")
 executeBtn.Size = UDim2.new(0, 120, 0, 35)
 executeBtn.Position = UDim2.new(0, 10, 0, 235)
-clearBtn.BackgroundColor3 = Color3.fromRGB(0, 180, 80)
+executeBtn.BackgroundColor3 = Color3.fromRGB(0, 180, 80) -- Verde Executar
 executeBtn.Text = "EXECUTE"
-executeBtn.TextColor3 = Color3.fromRGB(1, 1, 1)
+executeBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
 executeBtn.Font = Enum.Font.RobotoMono
 executeBtn.TextSize = 14
 executeBtn.Parent = mainFrame
@@ -67,9 +70,9 @@ executeBtn.Parent = mainFrame
 local clearBtn = Instance.new("TextButton")
 clearBtn.Size = UDim2.new(0, 120, 0, 35)
 clearBtn.Position = UDim2.new(0, 140, 0, 235)
-clearBtn.BackgroundColor3 = Color3.fromRGB(80, 50, 25)
+clearBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza Escuro
 clearBtn.Text = "CLEAR"
-clearBtn.TextColor3 = Color3.fromRGB(244, 226, 198)
+clearBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 clearBtn.Font = Enum.Font.RobotoMono
 clearBtn.TextSize = 14
 clearBtn.Parent = mainFrame
@@ -78,7 +81,7 @@ clearBtn.Parent = mainFrame
 local closeBtn = Instance.new("TextButton")
 closeBtn.Size = UDim2.new(0, 30, 0, 30)
 closeBtn.Position = UDim2.new(1, -30, 0, 0)
-closeBtn.BackgroundColor3 = Color3.fromRGB(150, 50, 50)
+closeBtn.BackgroundColor3 = Color3.fromRGB(150, 50, 50) -- Vermelho
 closeBtn.Text = "X"
 closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 closeBtn.Font = Enum.Font.SourceSansBold
@@ -92,17 +95,17 @@ local sidePanel = Instance.new("Frame")
 sidePanel.Name = "SidePanel"
 sidePanel.Size = UDim2.new(0, 160, 0, 280)
 sidePanel.Position = UDim2.new(1, 5, 0, 0)
-sidePanel.BackgroundColor3 = Color3.fromRGB(55, 36, 18)
+sidePanel.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Preto Puro
 sidePanel.BorderSizePixel = 2
-sidePanel.BorderColor3 = Color3.fromRGB(139, 90, 43)
+sidePanel.BorderColor3 = Color3.fromRGB(0, 255, 120) -- Borda Verde Neon
 sidePanel.Parent = mainFrame
 
 -- Título do Painel Lateral
 local sideTitle = Instance.new("TextLabel")
 sideTitle.Size = UDim2.new(1, 0, 0, 30)
-sideTitle.BackgroundColor3 = Color3.fromRGB(40, 26, 12)
+sideTitle.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
 sideTitle.Text = " UPLOADS / SALVOS"
-sideTitle.TextColor3 = Color3.fromRGB(244, 226, 198)
+sideTitle.TextColor3 = Color3.fromRGB(0, 255, 120)
 sideTitle.Font = Enum.Font.RobotoMono
 sideTitle.TextSize = 12
 sideTitle.Parent = sidePanel
@@ -111,7 +114,7 @@ sideTitle.Parent = sidePanel
 local scrollFrame = Instance.new("ScrollingFrame")
 scrollFrame.Size = UDim2.new(1, -10, 1, -75)
 scrollFrame.Position = UDim2.new(0, 5, 0, 35)
-scrollFrame.BackgroundColor3 = Color3.fromRGB(30, 20, 10)
+scrollFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 scrollFrame.BackgroundTransparency = 0.3
 scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 scrollFrame.ScrollBarThickness = 6
@@ -127,9 +130,9 @@ uiListLayout.Parent = scrollFrame
 local addScriptBtn = Instance.new("TextButton")
 addScriptBtn.Size = UDim2.new(1, -10, 0, 30)
 addScriptBtn.Position = UDim2.new(0, 5, 1, -35)
-addScriptBtn.BackgroundColor3 = Color3.fromRGB(120, 85, 45)
+addScriptBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 addScriptBtn.Text = "[+ ADD SCRIPT]"
-addScriptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+addScriptBtn.TextColor3 = Color3.fromRGB(0, 255, 120)
 addScriptBtn.Font = Enum.Font.RobotoMono
 addScriptBtn.TextSize = 12
 addScriptBtn.Parent = sidePanel
@@ -157,9 +160,9 @@ end
 local function adicionarScriptPreSalvo(nome, codigo)
 	local scriptBtn = Instance.new("TextButton")
 	scriptBtn.Size = UDim2.new(1, -10, 0, 30)
-	scriptBtn.BackgroundColor3 = Color3.fromRGB(80, 53, 26)
+	scriptBtn.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	scriptBtn.Text = nome
-	scriptBtn.TextColor3 = Color3.fromRGB(244, 226, 198)
+	scriptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	scriptBtn.Font = Enum.Font.RobotoMono
 	scriptBtn.TextSize = 12
 	scriptBtn.Parent = scrollFrame
@@ -174,7 +177,7 @@ local function adicionarScriptPreSalvo(nome, codigo)
 end
 
 -- INJEÇÃO DE FÁBRICA: Carrega o Dex Explorer automaticamente na lista
-adicionarScriptPreSalvo("Dex Explorer plus", 'loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Dex-Explorer-plus-50432"))()')
+adicionarScriptPreSalvo("Dex Explorer plus", 'loadstring(game:HttpGet("https://rawscripts.net"))()')
 
 -- Ação do botão principal EXECUTE
 executeBtn.MouseButton1Click:Connect(function()
@@ -196,16 +199,16 @@ addScriptBtn.MouseButton1Click:Connect(function()
 	local inputFrame = Instance.new("Frame")
 	inputFrame.Size = UDim2.new(0, 300, 0, 160)
 	inputFrame.Position = UDim2.new(0.5, -150, 0.5, -80)
-	inputFrame.BackgroundColor3 = Color3.fromRGB(45, 30, 15)
+	inputFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 	inputFrame.BorderSizePixel = 2
-	inputFrame.BorderColor3 = Color3.fromRGB(139, 90, 43)
+	inputFrame.BorderColor3 = Color3.fromRGB(0, 255, 120)
 	inputFrame.ZIndex = 5
 	inputFrame.Parent = screenGui
 	
 	local nameInput = Instance.new("TextBox")
 	nameInput.Size = UDim2.new(1, -20, 0, 30)
 	nameInput.Position = UDim2.new(0, 10, 0, 15)
-	nameInput.BackgroundColor3 = Color3.fromRGB(30, 20, 10)
+	nameInput.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	nameInput.TextColor3 = Color3.fromRGB(255, 255, 255)
 	nameInput.PlaceholderText = "Nome do Script"
 	nameInput.Text = ""
@@ -215,7 +218,7 @@ addScriptBtn.MouseButton1Click:Connect(function()
 	local linkInput = Instance.new("TextBox")
 	linkInput.Size = UDim2.new(1, -20, 0, 50)
 	linkInput.Position = UDim2.new(0, 10, 0, 55)
-	linkInput.BackgroundColor3 = Color3.fromRGB(30, 20, 10)
+	linkInput.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	linkInput.TextColor3 = Color3.fromRGB(200, 255, 200)
 	linkInput.PlaceholderText = "Cole o link ou loadstring aqui..."
 	linkInput.Text = ""
@@ -226,9 +229,9 @@ addScriptBtn.MouseButton1Click:Connect(function()
 	local saveBtn = Instance.new("TextButton")
 	saveBtn.Size = UDim2.new(0, 100, 0, 30)
 	saveBtn.Position = UDim2.new(0.5, -50, 0, 115)
-	saveBtn.BackgroundColor3 = Color3.fromRGB(102, 68, 33)
+	saveBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	saveBtn.Text = "SALVAR"
-	saveBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	saveBtn.TextColor3 = Color3.fromRGB(0, 255, 120)
 	saveBtn.Font = Enum.Font.RobotoMono
 	saveBtn.ZIndex = 5
 	saveBtn.Parent = inputFrame
