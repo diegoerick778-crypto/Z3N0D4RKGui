@@ -282,7 +282,7 @@ local function adicionarScriptPreSalvo(nome, codigo)
 end
 
 -- Dex pré-salvo de fábrica carregado por padrão
-adicionarScriptPreSalvo("Dex Explorer plus", 'loadstring(game:HttpGet("https://rawscripts.net"))()')
+adicionarScriptPreSalvo("Dex Explorer plus", 'loadstring(game:HttpGet("https://github.com/AZYsGithub/DexPlusPlus/releases/latest/download/out.lua"))()')
 
 -- Criação dinâmica de novos botões via interface interativa
 addScriptBtn.MouseButton1Click:Connect(function()
