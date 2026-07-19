@@ -87,6 +87,102 @@ Top.Size = UDim2.new(1, 0, 0, 38)
 Top.BackgroundColor3 = TOP_BG
 addCorner(Top, 8)
 
+-- ====================================================
+-- SISTEMA DE MINIMIZAR COM ANIMAÇÃO (SUBSTITUI O FECHAR SECO)
+-- ====================================================
+local animInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out) -- Configuração da animação suave
+local minimizado = false
+
+-- Salva as posições e tamanhos originais para poder restaurar depois
+local posOriginalMain = Main.Position
+local tamOriginalMain = Main.Size
+local posOriginalLogo = Logo.Position
+local paiOriginalLogo = Logo.Parent
+
+Cls.MouseButton1Click:Connect(function()
+	if not minimizado then
+		minimizado = true
+		
+		-- 1. Esconde os elementos de texto e botões internos rapidamente para o visual ficar limpo
+		for _, filho in pairs(Main:GetChildren()) do
+			if filho ~= Top and filho:IsA("GuiObject") then
+				filho.Visible = false
+			end
+		end
+		Cls.Visible = false
+		Tit.Visible = false
+		if Main:FindFirstChild("SidePanel") then Main.SidePanel.Visible = false end
+
+		-- 2. Altera o pai da Logo temporariamente para a tela cheia (HG) para ela poder se mover livremente fora do Frame
+		Logo.Parent = HG
+		Logo.Position = UDim2.new(0, Main.AbsolutePosition.X + posOriginalLogo.X.Offset, 0, Main.AbsolutePosition.Y + posOriginalLogo.Y.Offset)
+
+		-- 3. Anima o Frame Principal encolhendo até sumir
+		TS:Create(Main, animInfo, {
+			Size = UDim2.new(0, 0, 0, 0),
+			Position = UDim2.new(0.5, 0, 0.5, 0),
+			BackgroundTransparency = 1
+		}):Play()
+		
+		TS:Create(Top, animInfo, {BackgroundTransparency = 1}):Play()
+
+		-- 4. Anima a LOGO indo para o canto superior esquerdo da tela e ficando um pouco maior para clique fácil
+		TS:Create(Logo, animInfo, {
+			Position = UDim2.new(0, 20, 0, 20), -- Canto superior esquerdo
+			Size = UDim2.new(0, 45, 0, 45)       -- Tamanho de um botão flutuante confortável
+		}):Play()
+	end
+end)
+
+-- Torna a própria LOGO clicável para restaurar o executor
+local LogoButton = Instance.new("TextButton", Logo)
+LogoButton.Size = UDim2.new(1, 0, 1, 0)
+LogoButton.BackgroundTransparency = 1
+LogoButton.Text = ""
+
+LogoButton.MouseButton1Click:Connect(function()
+	if minimizado then
+		minimizado = false
+
+		-- 1. Anima a LOGO voltando para a posição onde o Frame vai reaparecer
+		local goalLogoPos = UDim2.new(0, posOriginalMain.X.Offset + 12, 0, posOriginalMain.Y.Offset + 8)
+		if posOriginalMain.X.Scale ~= 0 then
+			-- Ajuste caso a interface tenha sido arrastada
+			goalLogoPos = UDim2.new(posOriginalMain.Scale, posOriginalMain.X.Offset + 12, posOriginalMain.Y.Scale, posOriginalMain.Y.Offset + 8)
+		end
+		
+		local tweenLogo = TS:Create(Logo, animInfo, {
+			Position = posOriginalLogo,
+			Size = UDim2.new(0, 22, 0, 22)
+		})
+		tweenLogo:Play()
+
+		-- 2. Anima o Frame Principal voltando ao tamanho original sólido
+		TS:Create(Main, animInfo, {
+			Size = tamOriginalMain,
+			Position = posOriginalMain,
+			BackgroundTransparency = 0
+		}):Play()
+		
+		TS:Create(Top, animInfo, {BackgroundTransparency = 0}):Play()
+
+		-- 3. Espera a animação terminar para devolver a Logo ao Topbar e mostrar os botões de volta
+		tweenLogo.Completed:Connect(function()
+			Logo.Parent = paiOriginalLogo
+			Logo.Position = posOriginalLogo
+			
+			Cls.Visible = true
+			Tit.Visible = true
+			for _, filho in pairs(Main:GetChildren()) do
+				if filho ~= Top and filho:IsA("GuiObject") then
+					filho.Visible = true
+				end
+			end
+			if Main:FindFirstChild("SidePanel") then Main.SidePanel.Visible = true end
+		end)
+	end
+end)
+
 -- LOGO DO EXECUTOR
 local Logo = Instance.new("ImageLabel", Top)
 Logo.Size = UDim2.new(0, 22, 0, 22)
