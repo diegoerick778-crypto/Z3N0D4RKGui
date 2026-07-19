@@ -73,12 +73,22 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 
 	Cls.MouseButton1Click:Connect(function()
 		if not minimizado then
-			minimizado = true posOriginalMain = Main.Position
-			for _, f in pairs(Main:GetChildren()) do if f ~= Top and f:IsA("GuiObject") then f.Visible = false end end
+			minimizado = true 
+			posOriginalMain = Main.Position
+			
+			-- CORREÇÃO: Salva a posição absoluta e muda o Pai da logo ANTES de esconder o Main
+			local absX, absY = Main.AbsolutePosition.X, Main.AbsolutePosition.Y
+			Logo.Parent = HG
+			Logo.Position = UDim2.new(0, absX + posOriginalLogo.X.Offset, 0, absY + posOriginalLogo.Y.Offset)
+			
+			-- Agora sim esconde o restante dos elementos sem afetar a logo
+			for _, f in pairs(Main:GetChildren()) do 
+				if f ~= Top and f:IsA("GuiObject") then f.Visible = false end 
+			end
 			Cls.Visible, Tit.Visible = false, false
 			if Main:FindFirstChild("SidePanel") then Main.SidePanel.Visible = false end
-			Logo.Parent = HG
-			Logo.Position = UDim2.new(0, Main.AbsolutePosition.X + posOriginalLogo.X.Offset, 0, Main.AbsolutePosition.Y + posOriginalLogo.Y.Offset)
+			
+			-- Inicia as animações de transição suave
 			TS:Create(Main, animInfo, {Size = UDim2.new(0,0,0,0), Position = UDim2.new(0.5,0,0.5,0), BackgroundTransparency = 1}):Play()
 			TS:Create(Top, animInfo, {BackgroundTransparency = 1}):Play()
 			TS:Create(Logo, animInfo, {Position = UDim2.new(0, 20, 0, 20), Size = UDim2.new(0, 45, 0, 45)}):Play()
