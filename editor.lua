@@ -39,7 +39,7 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 	Logo.Size = UDim2.new(0, 22, 0, 22)
 	Logo.Position = UDim2.new(0, 12, 0.5, -11)
 	Logo.BackgroundTransparency = 1
-	Logo.Image = "rbxassetid://11415714032"
+	Logo.Image = "rbxassetid://6031280882"
 	Logo.ZIndex = 5
 
 	-- Nome do Executor
