@@ -33,7 +33,6 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 	local dragStart = nil
 	local startPos = nil
 
-	-- CORREÇÃO: O evento de arrastar agora inicia APENAS ao interagir com a Topbar
 	Top.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
@@ -71,7 +70,7 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 	Logo.Image = "rbxassetid://6031280882"
 	Logo.ZIndex = 5
 
-	local Tit = Instance.new("TextLabel", Top)
+	-- CORREÇÃO: Removida a linha duplicada 'local Tit' que estava obsoleta
 	local Title = Instance.new("TextLabel", Top)
 	Title.Size = UDim2.new(1, -90, 0, 38)
 	Title.Position = UDim2.new(0, 40, 0, 0)
@@ -83,7 +82,6 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 	Title.TextXAlignment = Enum.TextXAlignment.Left
 	Title.ZIndex = 5
 
-	-- CORREÇÃO: Caractere alterado de "×" para "−" para indicar minimização intuitiva
 	local Cls = Instance.new("TextButton", Top)
 	Cls.Size = UDim2.new(0, 35, 0, 35)
 	Cls.Position = UDim2.new(1, -38, 0, 1.5)
@@ -125,7 +123,6 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 		if not minimizado then
 			minimizado = true
 			
-			-- CORREÇÃO: Salva a Posição E o Tamanho no exato momento da minimização (compatível com futuro resize)
 			posOriginalMain = Main.Position
 			tamOriginalMain = Main.Size
 
@@ -147,7 +144,6 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 
 			tweenMain:Play()
 
-			-- CORREÇÃO: Conexão temporária com desconexão imediata interna para evitar memory leak
 			local connection
 			connection = tweenMain.Completed:Connect(function()
 				connection:Disconnect()
@@ -167,7 +163,6 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 			local tweenMini = TS:Create(Minibutton, animInfo, {Size = UDim2.new(0, 0, 0, 0)})
 			tweenMini:Play()
 
-			-- CORREÇÃO: Conexão temporária com desconexão imediata interna para evitar memory leak
 			local connection
 			connection = tweenMini.Completed:Connect(function()
 				connection:Disconnect()
