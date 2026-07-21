@@ -63,11 +63,11 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 	-- ====================================================
 	-- ELEMENTOS DA TOPBAR
 	-- ====================================================
-	local Logo = Instance.new("ImageLabel", Top)
+	local Logo = Instance.new("decalLabel", Top)
 	Logo.Size = UDim2.new(0, 22, 0, 22)
 	Logo.Position = UDim2.new(0, 12, 0.5, -11)
 	Logo.BackgroundTransparency = 1
-	Logo.Image = "rbxassetid://6031280882"
+	Logo.decal = "rbxassetid://123812388951320"
 	Logo.ZIndex = 5
 
 	-- CORREÇÃO: Removida a linha duplicada 'local Tit' que estava obsoleta
@@ -95,11 +95,11 @@ function EditorModule.Create(HG, Config, TS, UIS, CG)
 	-- ====================================================
 	-- BOTÃO MINIATURA FLUTUANTE (FIXO INDEPENDENTE)
 	-- ====================================================
-	local Minibutton = Instance.new("ImageButton", HG)
+	local Minibutton = Instance.new("DecalButton", HG)
 	Minibutton.Size = UDim2.new(0, 45, 0, 45)
 	Minibutton.Position = UDim2.new(0, 20, 0, 20)
 	Minibutton.BackgroundTransparency = 1
-	Minibutton.Image = "rbxassetid://6031280882"
+	Minibutton.decal = "rbxassetid://6031280882"
 	Minibutton.Visible = false
 	Minibutton.ZIndex = 10
 	Config.addCorner(Minibutton, 8)
